@@ -3,7 +3,7 @@ module.exports = function (server) {
   const aWss = WSServer.getWss();
   const { v4: uuidv4 } = require("uuid");
 
-  server.ws("/", (ws, _req) => {
+  server.ws("/socket", (ws, _req) => {
     ws.id = uuidv4();
 
     ws.on("message", (msg) => {
