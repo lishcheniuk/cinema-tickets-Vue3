@@ -1,7 +1,5 @@
 import { OrderType, UserType } from "../store/types";
 
-const API_URL = "http://localhost:3000";
-
 function request(path = "/", method = "GET", body?: any) {
   const options: any = {
     method,
@@ -12,7 +10,7 @@ function request(path = "/", method = "GET", body?: any) {
     options.body = JSON.stringify(body);
   }
 
-  const url = new URL(API_URL);
+  const url = new URL(process.env.VUE_APP_API_URL);
   url.pathname = path;
 
   return fetch(url.href, options).then((res: any) => {

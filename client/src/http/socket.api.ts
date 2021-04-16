@@ -1,4 +1,4 @@
-const socket = new WebSocket("ws://localhost:3000");
+const socket = new WebSocket(process.env.VUE_APP_SOCKET_URL);
 
 let listens = [] as Array<(param: string) => void>;
 
