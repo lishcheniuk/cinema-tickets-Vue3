@@ -1,4 +1,5 @@
-const socket = new WebSocket("wss://cinema-tickets.vercel.app/");
+const url = "wss://cinema-tickets.vercel.app/socket";
+const socket = new WebSocket(url);
 
 let listens = [] as Array<(param: string) => void>;
 
