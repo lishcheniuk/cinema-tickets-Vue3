@@ -131,6 +131,7 @@ export default defineComponent({
     });
 
     onUnmounted(() => {
+      store.commit("cart/clearCart");
       unsubscribeFromUpdate();
     });
 
