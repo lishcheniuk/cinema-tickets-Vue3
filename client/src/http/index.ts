@@ -1,6 +1,6 @@
 import { OrderType, UserType } from "../store/types";
 
-function request(path: string, method = "GET", body?: any) {
+function request(path = "/", method = "GET", body?: any) {
   const options: any = {
     method,
     headers: { "Content-Type": "application/json" },
@@ -10,10 +10,10 @@ function request(path: string, method = "GET", body?: any) {
     options.body = JSON.stringify(body);
   }
 
-  // const url = new URL("https://cinema-tickets.vercel.app");
-  // url.pathname = path;
+  const url = new URL("https://cinema-tickets.vercel.app");
+  url.pathname = path;
 
-  return fetch(path, options).then((res: any) => {
+  return fetch(url.href, options).then((res: any) => {
     if (!res.ok) throw { status: res.status };
     return res.json();
   });
