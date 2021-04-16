@@ -12,6 +12,7 @@ app.use(cors());
 
 startSocket(app);
 
+app.get("/", (_req, res) => res.send("Home Page Route"));
 app.use("/api/films", require("./routes/films.route"));
 app.use("/api/auth", require("./routes/auth.route"));
 
