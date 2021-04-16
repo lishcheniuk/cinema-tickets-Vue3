@@ -1,4 +1,4 @@
-const socket = new WebSocket(process.env.VUE_APP_SOCKET_URL);
+const socket = new WebSocket("wss://cinema-tickets.vercel.app/");
 
 let listens = [] as Array<(param: string) => void>;
 
