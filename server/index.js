@@ -1,25 +1,29 @@
 const express = require("express");
 const MongoClient = require("mongodb").MongoClient;
-const cors = require("cors");
-const startSocket = require("./socket");
+//const cors = require("cors");
 require("dotenv").config();
 
 const PORT = process.env.PORT || 3000;
 const app = express();
+const WSServer = require("express-ws")(app);
 
-app.use(cors());
+app.use((_req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, PUT, PATCH, POST, DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  next();
+});
 app.use(express.json({ extended: true }));
 
-startSocket(app);
-
-app.get("/", (_req, res) => res.send("Home Page Route"));
+app.ws("/socket", require("./websocket")(WSServer));
 app.use("/api/films", require("./routes/films.route"));
 app.use("/api/auth", require("./routes/auth.route"));
+app.get("*", (_req, res) => res.send("It is work!"));
 
 function start() {
   const client = new MongoClient(process.env.MONGO_URI, {
     useNewUrlParser: true,
-    useUnifiedTopology: true,
+    useUnifiedTopology: true
   });
 
   client.connect((err) => {
