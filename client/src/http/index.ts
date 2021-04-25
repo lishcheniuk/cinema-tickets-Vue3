@@ -5,6 +5,7 @@ const API_URL = "https://cinema-tickets-server.vercel.app";
 function request(path = "/", method = "GET", body?: any) {
   const options: any = {
     method,
+    mode: "no-cors",
     headers: { "Content-Type": "application/json" }
   };
 

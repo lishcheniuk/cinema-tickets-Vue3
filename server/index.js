@@ -18,7 +18,7 @@ app.use(express.json({ extended: true }));
 app.ws("/socket", require("./websocket")(WSServer));
 app.use("/api/films", require("./routes/films.route"));
 app.use("/api/auth", require("./routes/auth.route"));
-app.get("*", (_req, res) => res.send("It is work!"));
+app.get("*", (_req, res) => res.send("It works!"));
 
 function start() {
   const client = new MongoClient(process.env.MONGO_URI, {
