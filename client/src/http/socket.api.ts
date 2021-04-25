@@ -1,11 +1,8 @@
-const url = "wss://cinema-tickets.vercel.app/socket";
-const socket = new WebSocket(url);
+const WS_URL = "wss://cinema-tickets-server.vercel.app/socket";
+
+const socket = new WebSocket(WS_URL);
 
 let listens = [] as Array<(param: string) => void>;
-
-// socket.addEventListener("open", () => {
-//   socket.send("connect");
-// });
 
 socket.addEventListener("message", (msg) => {
   const data = JSON.parse(msg.data);

@@ -1,16 +1,18 @@
 import { OrderType, UserType } from "../store/types";
 
+const API_URL = "https://cinema-tickets-server.vercel.app";
+
 function request(path = "/", method = "GET", body?: any) {
   const options: any = {
     method,
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json" }
   };
 
   if (body) {
     options.body = JSON.stringify(body);
   }
 
-  const url = new URL("https://cinema-tickets.vercel.app");
+  const url = new URL(API_URL);
   url.pathname = path;
 
   return fetch(url.href, options).then((res: any) => {
@@ -34,5 +36,5 @@ export default {
   },
   fetchOrders(userId: string) {
     return request(`/api/auth/orders/${userId}`);
-  },
+  }
 };

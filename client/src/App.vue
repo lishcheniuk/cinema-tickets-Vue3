@@ -1,7 +1,6 @@
 <template>
   <div>
     <alerts />
-
     <navbar />
     <router-view />
   </div>
@@ -15,8 +14,8 @@ import Alerts from "./components/Alerts.vue";
 export default defineComponent({
   components: {
     Navbar,
-    Alerts,
-  },
+    Alerts
+  }
 });
 </script>
 
