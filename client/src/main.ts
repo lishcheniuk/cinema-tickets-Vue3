@@ -5,9 +5,9 @@ import store from "./store";
 import titleMixin from "./mixins/title.mixin";
 
 store.dispatch("films/loadMovies").then(() =>
-  createApp(App)
-    .use(store)
-    .use(router)
-    .mixin(titleMixin)
-    .mount("#app")
+    createApp(App)
+        .use(store)
+        .use(router)
+        .mixin(titleMixin)
+        .mount("#app")
 );

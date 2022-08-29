@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import {defineComponent} from "vue";
 import Navbar from "./components/Navbar.vue";
 import Alerts from "./components/Alerts.vue";
 

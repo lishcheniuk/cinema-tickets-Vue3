@@ -1,8 +1,6 @@
 <template>
   <div class="movies wrap">
-    <h2>
-      Все фильмы
-    </h2>
+    <h2>Все фильмы</h2>
 
     <movie v-for="movie of getMovies" :key="movie._id" :movie="movie" />
   </div>

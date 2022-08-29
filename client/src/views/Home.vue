@@ -7,7 +7,11 @@
         Сегодня в кино {{ getMoviesToday.length }} {{ strTransform }}
       </h2>
       <h2 v-else>Сегодня фильмов нету</h2>
-      <movie v-for="movie of getMoviesToday" :key="movie._id" :movie="movie" />
+      <movie
+        v-for="movie of getMoviesToday"
+        :key="movie._id"
+        :movie="movie"
+      />
     </div>
   </div>
 </template>

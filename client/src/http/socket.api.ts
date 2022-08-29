@@ -1,23 +1,34 @@
-const WS_URL = "wss://cinema-tickets-server.vercel.app/socket";
+// const WS_URL = "wss://cinema-tickets.vercel.app/socket";
 
-const socket = new WebSocket(WS_URL);
+const socket = new WebSocket('ws://localhost:3000/socket');
 
-let listens = [] as Array<(param: string) => void>;
+let listens: Array<(param: string) => void> = [];
 
 socket.addEventListener("message", (msg) => {
-  const data = JSON.parse(msg.data);
-  listens.forEach((fn) => fn(data.method));
+    const data = JSON.parse(msg.data);
+    listens.forEach((fn) => fn(data.method));
 });
 
 export function subscribeToUpdate(cb: (param: string) => void) {
-  listens.push(cb);
+    listens.push(cb);
 }
 
-export function unsubscribeFromUpdate() {
-  listens = [];
+export function unsubscribeFromUpdate(cb: (param: string) => void) {
+    listens = listens.filter(func => func !== cb);
 }
 
 export function socketSendMessage(message: { method: string }) {
-  const msg = JSON.stringify(message);
-  socket.send(msg);
+    const msg = JSON.stringify(message);
+
+    if (socket.readyState === WebSocket.OPEN) {
+        socket.send(msg);
+        return;
+    }
+    socket.addEventListener(
+        "open",
+        () => {
+            socket.send(msg);
+        },
+        { once: true }
+    );
 }

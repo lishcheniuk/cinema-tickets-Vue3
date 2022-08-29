@@ -13,11 +13,7 @@
     </div>
 
     <main>
-      <time-table-film
-        v-for="movie of getMovies"
-        :key="movie._id"
-        :movie="movie"
-      />
+      <time-table-film v-for="movie of getMovies" :key="movie._id" :movie="movie" />
     </main>
   </div>
 </template>
