@@ -1,11 +1,13 @@
 const express = require("express");
 const MongoClient = require("mongodb").MongoClient;
-//const cors = require("cors");
+const cors = require("cors");
 require("dotenv").config();
 
 const PORT = process.env.PORT || 3000;
 const app = express();
 const WSServer = require("express-ws")(app);
+
+app.use(cors());
 
 app.use((_req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
